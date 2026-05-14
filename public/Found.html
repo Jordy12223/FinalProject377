@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>API Project</title>
+        <link rel="stylesheet" href="Page.css">
+        <script defer src="Page.js"></script>
+    </head>
+    <body>
+        <header id = "header">
+            <h1 id = "title">Found Pet!</h1>
+            <ul id = "options">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Help.html">Help</a></li>
+            </ul>
+        </header>
+
+        <main class="fmain">
+
+            <div class="intro">
+                <img src="https://images7.alphacoders.com/126/1269810.jpg" alt="Pets">
+                <div class="intro-text">
+                    <h1>Report a Found Pet</h1>
+                    <p>Help reconnect lost pets with their families by submitting information below.</p>
+                </div>
+            </div>
+
+            <form id="foundPetForm">
+                <label>Animal Type</label>
+                <select id="animalType">
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                </select>
+                <label>Breed</label>
+                <input type="text" id="breed" placeholder="Golden Retriever">
+                <label>Color</label>
+                <input type="text" id="color" placeholder="Brown and White">
+                <label>Description</label>
+                <textarea id="description" placeholder="Describe the pet..."></textarea>
+                <label>Location Found</label>
+                <input type="text" id="location" placeholder="City or address">
+                <label>Contact Information</label>
+                <input type="text" id="contact" placeholder="Email or phone number">
+                <label for="imageUpload">Upload Pet Photo</label>
+                <input type="file" id="imageUpload" accept="image/*">
+                <button type="submit">Submit Found Pet Report</button>
+            </form>
+        </main>
+
+
+    </body>
+</html>

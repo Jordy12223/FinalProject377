@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>API Project</title>
+        <link rel="stylesheet" href="Page.css">
+        <script defer src="Page.js"></script>
+    </head>
+    <body>
+        <header id = "header">
+            <h1 id = "title">Lost Pet!</h1>
+            <ul id = "options">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Help.html">Help</a></li>
+            </ul>
+        </header>
+
+        <main class="lmain">
+            <div class="intro">
+                <img src="https://images8.alphacoders.com/118/thumb-1920-1185233.jpg" alt="Pets">
+                <div class="intro-text">
+                    <h1>Sumbit Your Lost Pet</h1>
+                    <p>Help connect with others to help find your lost friend.</p>
+                </div>
+            </div>
+            <form id="lostPetForm">
+                <label>Animal Type</label>
+                <select id="animalType">
+                    <option>Dog</option>
+                    <option>Cat</option>
+                </select>
+                <label>Breed</label>
+                <input type="text" id="breed">
+                <label>Color</label>
+                <input type="text" id="color">
+                <label>Description</label>
+                <textarea id="description"></textarea>
+                <label>Last Seen Location</label>
+                <input type="text" id="location">
+                <label>Contact Information</label>
+                <input type="text" id="contact">
+                <button id="lbutton"type="submit">Submit Report</button>
+            </form>
+        </main>
+    </body>
+</html>

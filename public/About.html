@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>API Project</title>
+        <link rel="stylesheet" href="Page.css">
+        <script defer src="Page.js"></script>
+    </head>
+    <body>
+        <header id = "header">
+            <h1 id = "title">About</h1>
+            <ul id = "options">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Help.html">Help</a></li>
+            </ul>
+        </header>
+
+        <main class="mmain">
+            <div class="top">
+                <div class="intro">
+                    <img src="https://www.atozvet.com/wp-content/uploads/2017/07/Prevention-and-Treatment-For-Pet-Disease-Midland-TX-scaled.jpg" 
+                    alt="Happy pets" />
+                    <div class="intro-text">
+                        <h2>Helping Lost Pets Find Home</h2>
+                        <p>Connecting owners, shelters, and rescuers through one simple platform.</p>
+                    </div>
+                </div>
+                <h2>What is Lost Pet Finder?</h2>
+                <p>
+                    Lost Pet Finder is a web application designed to help reunite lost pets with their owners.
+                    It centralizes lost and found pet reports into one interactive platform instead of relying on
+                    scattered posts across social media, flyers, and shelter listings.
+                </p>
+                <h2>The Problem</h2>
+                <p>
+                    Right now, information about lost pets is very unorganized. Owners often post on Facebook,
+                    neighborhood apps, or contact shelters individually. This makes it difficult to track pets efficiently
+                    or search within a specific area.
+                </p>
+                <h2>Our Solution</h2>
+                <p>
+                    This application uses an interactive Leaflet map to display lost and found pets in real time.
+                    Users can filter by location, distance, breed, and status to quickly find relevant information.
+                    All reports are stored in a centralized database so information stays organized and searchable.
+                </p>
+            </div>
+
+            <div class="left">
+                <img class="left-image" src="https://img1.wsimg.com/isteam/ip/0d924db2-5d2e-4ed8-8e5a-acc4c5616e05/AdobeStock_167618810.jpeg/:/rs=h:1000,cg:true,m"/>
+                <h2>Who This Helps</h2>
+                <ul>
+                    <li>Pet owners looking for missing animals</li>
+                    <li>People who have found stray pets</li>
+                    <li>Animal shelters managing intake animals</li>
+                    <li>Veterinary clinics assisting with microchip identification</li>
+                </ul>
+            </div>
+            <div class="right">
+                <img class="right-image" src="https://images.fastcompany.com/image/upload/f_webp,c_fit,w_1920,q_auto/wp-cms/uploads/2024/01/p-1-91004047-why-researchers-are-starting-to-pay-attention-to-animals-interactions-with-tech.jpg"/>
+                <h2>Technology Used</h2>
+                <ul>
+                    <li>HTML, CSS, JavaScript (frontend)</li>
+                    <li>Leaflet.js for interactive maps</li>
+                    <li>Dog & Cat APIs for sample animal images</li>
+                    <li>Supabase for storing pet and user data</li>
+                </ul>
+            </div>
+
+            <div class="bottom">
+                <h2>How It Works</h2>
+                <ol>
+                    <li>Users report a lost or found pet using a form</li>
+                    <li>The data is stored in a database (Supabase)</li>
+                    <li>Pets appear on an interactive map</li>
+                    <li>Users filter and search to locate matches</li>
+                    <li>Owners can reconnect with their pets faster</li>
+                </ol>
+            </div>
+        </main>
+
+    </body>
+</html>
