@@ -37,7 +37,7 @@ app.post('/pet', async (req, res) =>{
   const last_seen_location = req.body.last_seen_location;
   const contact_information = req.body.contact_information;
 
-  const {data, error} = await supabase.from('pet').insert([{
+  const {data, error} = await supabase.from('pets').insert([{
     animal_type: animal_type,
     breed: breed,
     status: status,
