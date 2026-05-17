@@ -4,8 +4,8 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: #aedaef;
-    color: rgb(255, 255, 255);
+    background-color: #7db5cf;
+    color: white;
     padding: 15px;
     margin: 10px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -28,7 +28,7 @@
     text-decoration: underline;
 }
 button{
-    background: linear-gradient(135deg, #aedaef, #aedaef);
+    background: #7db5cf;
     color: white;
     border: none;
     padding: 14px 28px;
@@ -47,6 +47,29 @@ button:hover{
     width: 100%;
     height: 70%;
 }
+#slides {
+    width: 100%;
+    text-align: center;
+}
+.swiper {
+    width: 70%;
+    height: 30%;
+    padding: 20px 0 50px;
+}
+.swiper-slide img {
+    width: 320px;
+    height: 220px;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+.swiper-button-next,.swiper-button-prev {
+    color: #7db5cf;
+}
+.swiper-pagination-bullet {
+    background: #7db5cf;
+}
+
 #top{
     display: flex;
     justify-content: center;
@@ -75,6 +98,17 @@ button:hover{
     border-radius: 15px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     border: 2px solid #e6e6e6;
+}
+#petChart {
+    max-width: 500px;
+    margin-top: 20px;
+}
+.leaflet-popup-content img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
 }
 
 /* About Page */

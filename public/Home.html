@@ -7,8 +7,11 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <link rel="stylesheet" href="Page.css">
         <script defer src="Page.js"></script>
+
     </head>
     <style>
         #map{
@@ -25,6 +28,16 @@
             </ul>
         </header>
 
+        <div id="slides">
+            <h2>Featured Found Pets!</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper" id="homePets"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
         <nav id = "homain">
             <div id = "top">
                 <button type="button1" onclick="window.location.href='Lost.html'">Report Lost</button>
@@ -39,12 +52,6 @@
                         <option value = "dog">Dog</option>
                         <option value = "cat">Cat</option>
                     </select>
-                    <label>Status:</label>
-                    <select id = "statusFilter"> 
-                        <option value = "Both">Lost and Found</option>
-                        <option value = "lost">Lost</option>
-                        <option value = "found">Found</option>
-                    </select>
                     <label>Color:</label>
                     <select id="colorFilter">
                         <option value="all">All Colors</option>
@@ -56,21 +63,14 @@
                     </select>
                     <label>Breed:</label>
                     <input type="text" id="breedFilter" placeholder="e.g. Labrador, Siamese">
-                    <label>Location:</label>
-                    <input type="text" id="locationFilter" placeholder="City or area">
-                    <label>Posted:</label>
-                    <select id="timeFilter">
-                        <option value="all">Any Time</option>
-                        <option value="24h">Last 24 hours</option>
-                        <option value="7d">Last 7 days</option>
-                        <option value="30d">Last 30 days</option>
-                    </select>
                 </div>
             </div>
-            <div id = "right">
+
+            <div id="right">
                 <div id="map"></div>
             </div>
            
+            
         </nav>
 
         
