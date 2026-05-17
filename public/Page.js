@@ -1,7 +1,9 @@
-//Map
+// Map
 let map;
+let cachedPets = [];
+
 function loadMap(){
-    map = L.map('map').setView([32, -95], 7);
+    map = L.map('map').setView([38.9897, -76.9378], 9);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -9,15 +11,14 @@ function loadMap(){
             '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 }
-
-//Map Cordinates
+// Map Cordinates
 function getRandomCoords() {
-    const lat = 32 + (Math.random() - 0.5) * 2;
-    const lng = -95 + (Math.random() - 0.5) * 2;
+    const lat = 38.9897 + (Math.random() - 0.50);
+    const lng = -76.9378 + (Math.random() - 0.50);
     return [lat, lng];
 }
 
-//
+// Filtering Pets On Map
 function filterPets(pets) {
     const type = document.getElementById("typeFilter")?.value || "all";
     const color = document.getElementById("colorFilter")?.value || "all";
@@ -38,28 +39,27 @@ function filterPets(pets) {
     });
 }
 
+// Loads Pet Markers On Map
 async function loadPetMarkers() {
+    if (cachedPets.length === 0) {
+        const res = await fetch("http://localhost:3000/pets");
+        const pets = await res.json();
 
-    const res = await fetch("http://localhost:3000/pets");
-    const pets = await res.json();
-    const filteredPets = filterPets(pets);
+        cachedPets = pets.map(pet => ({
+            ...pet,
+            coords: getRandomCoords(),
+            image:
+                pet.animal_type?.toLowerCase() === "dog"
+                    ? `https://place.dog/300/200?random=${Math.random()}`
+                    : `https://cataas.com/cat?random=${Math.random()}`
+        }));
+    }
+
+    const filteredPets = filterPets(cachedPets);
     filteredPets.forEach(pet => {
-
-        const coords = getRandomCoords();
-        const marker = L.marker(coords).addTo(map);
-
-        let imageHtml = "";
-        const type = pet.animal_type?.toLowerCase();
-        if (type === "dog") {
-            imageHtml = `<img src="https://place.dog/300/200?random=${Math.random()}">`;
-        } else if (type === "cat") {
-            imageHtml = `<img src="https://cataas.com/cat?random=${Math.random()}">`;
-        } else {
-            imageHtml = `<img src="https://via.placeholder.com/300x200?text=No+Image">`;
-        }
-
+        const marker = L.marker(pet.coords).addTo(map);
         const popupContent = `
-            ${imageHtml}<br>
+            <img src="${pet.image}" width="200"><br>
             <b>${pet.animal_type}</b><br>
             <b>Breed:</b> ${pet.breed}<br>
             <b>Color:</b> ${pet.color}<br>
@@ -67,16 +67,18 @@ async function loadPetMarkers() {
             <b>Location:</b> ${pet.last_seen_location}<br>
             <b>Contact:</b> ${pet.contact_information}
         `;
-
+        marker.bindPopup(popupContent);
         marker.on("mouseover", () => {
-            marker.bindPopup(popupContent).openPopup();
+            marker.openPopup();
         });
+
         marker.on("mouseout", () => {
             marker.closePopup();
         });
     });
 }
 
+// Reloads the Map to help Filter on the Map.
 function reloadMap() {
     if (!map) return;
     map.eachLayer(layer => {
@@ -87,6 +89,7 @@ function reloadMap() {
     loadPetMarkers();
 }
 
+// Loads up pets Markers and Map
 window.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("map")) {
         loadMap();
@@ -94,27 +97,21 @@ window.addEventListener("DOMContentLoaded", () => {
             loadPetMarkers();
         }, 300);
     }
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-
     const filters = [
         "typeFilter",
         "colorFilter",
         "breedFilter",
         "locationFilter"
     ];
-
     filters.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener("input", reloadMap);
-            el.addEventListener("change", reloadMap);
+        if (document.getElementById(id)) {
+            document.getElementById(id).addEventListener("input", reloadMap);
+            document.getElementById(id).addEventListener("change", reloadMap);
         }
     });
 });
 
-//Swiper
+// Swiper
 function loadSwiper() {
     const container = document.getElementById("homePets");
     for (let i = 0; i < 6; i++) {
@@ -141,33 +138,25 @@ function loadSwiper() {
 }
 window.addEventListener("DOMContentLoaded", loadSwiper);
 
-//Found Pets Load
+// Found Pets Load
 async function loadFoundPets() {
     const response = await fetch("http://localhost:3000/pets");
     const pets = await response.json();
-
     const container = document.getElementById("petsContainer");
     container.innerHTML = "";
 
     pets.forEach(pet => {
-
-        let imageUrl;
-
+        let image;
         if (pet.animal_type.toLowerCase() === "dog") {
-            imageUrl = `https://place.dog/300/200?random=${Math.random()}`;
+            image = `https://place.dog/300/200?random=${Math.random()}`;
         } 
         else if (pet.animal_type.toLowerCase() === "cat") {
-            imageUrl = `https://cataas.com/cat?width=300&height=200&random=${Math.random()}`;
-        } 
-        else {
-            imageUrl = "https://place.dog/300/200";
+            image = `https://cataas.com/cat?width=300&height=200&random=${Math.random()}`;
         }
-
         const section = document.createElement("div");
-
         section.innerHTML = `
             <div class="pet-card" id="pet-${pet.id}">
-                <img src="${imageUrl}" alt="pet image">
+                <img src="${image}" alt="pet image">
 
                 <h3>${pet.animal_type}</h3>
                 <p><strong>Breed:</strong> ${pet.breed}</p>
@@ -182,7 +171,6 @@ async function loadFoundPets() {
             </div>
             <hr>
         `;
-
         container.appendChild(section);
     });
 }
@@ -197,9 +185,9 @@ async function confirmDelete(id) {
     await fetch(`http://localhost:3000/pet/${id}`, {
         method: "DELETE"
     });
-
     document.getElementById(`pet-${id}`).remove();
 }
 
 //Lost Submit Button
-
+// This would have had the functions to add in the animals but sadly could not 
+// figure it out.
