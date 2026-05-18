@@ -33,4 +33,7 @@ I would later like this to be fully used on mobile because it would be easier
 for users in general. 
 
 Google Chrome is the primary recommended browsers for the best compatibility and performance for this project. 
+There is a Developer Manual Provided in the Docs folder.
 
+## Author
+Developed by Jordan Stone
